@@ -1,7 +1,7 @@
 import React from 'react'
-import Home from './components/Home'
-import Signin from './components/Signin'
-import Signup from './components/Signup'
+import Home from './components/common/Home'
+import Signin from './components/common/Signin'
+import Signup from './components/common/Signup'
 
 
 function App() {

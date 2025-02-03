@@ -1,6 +1,6 @@
 import React from 'react'
-import  Article from './ArticleById'
-import Articles from './Articles'
+import  Article from '../common/ArticleById'
+import Articles from '../common/Articles'
 
 function UserProfile() {
   return (
