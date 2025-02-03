@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import {createBrowserRouter, Navigate} from 'react-router-dom'
+import {createBrowserRouter, Navigate, RouterProvider} from 'react-router-dom'
 import RootLayout from './components/common/RootLayout.jsx'
 import Home from './components/common/Home.jsx'
 import Signin from './components/common/Signin.jsx'
@@ -77,6 +77,6 @@ const browserRouterObj=createBrowserRouter([
 ])
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <RouterProvider router={browserRouterObj}/>
   </StrictMode>,
 )
