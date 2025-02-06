@@ -1,10 +1,19 @@
 import React from 'react'
-import  Article from '../common/ArticleById'
-import Articles from '../common/Articles'
+import { NavLink, Outlet } from 'react-router-dom'
+
 
 function UserProfile() {
   return (
-    <div>UserProfile</div>
+    <div>
+      <ul className='d-flex justify-content-center list-unstyled fs-3'>
+          <li>
+            <NavLink to='articles' className="nav-link">Articles</NavLink>
+          </li>
+      </ul>
+      <div className='mt-5'>
+        <Outlet/>
+      </div>
+    </div>
   )
 }
 
