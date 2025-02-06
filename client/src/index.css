@@ -13,14 +13,19 @@
   --white-smoke:#F0F0F0;
   --bright-red:#E7473C;
 }
-
+.user-name{
+  color: var(--royal-blue);
+  margin: 2px;
+}
 body{
   background-color: var(--white-smoke);
 }
 
 .header{
+  padding: 5px 10px;
   margin-bottom: 50px;
   background-image: linear-gradient(to bottom ,#aba5a5,#bcb7b8);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .header-links{
