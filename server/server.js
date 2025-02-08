@@ -6,7 +6,8 @@ const port =process.env.PORT||4000;
 const userApp=require('./APIs/userApi')
 const authorApp=require('./APIs/authorApi')
 const adminApp=require('./APIs/adminApi')
-
+const cors=require('cors')
+app.use(cors())
 //db connect
 mongoose.connect(process.env.DBURL)
 .then(()=>{
@@ -18,3 +19,9 @@ app.use(exp.json())
 app.use('/user-api',userApp);
 app.use('/author-api',authorApp);
 app.use('/admin-api',adminApp);
+
+// error handler
+app.use((err,req,res,next)=>{
+  console.log("error object: ",err);
+  res.send({message:err.message})
+})
