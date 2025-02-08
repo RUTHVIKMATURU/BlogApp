@@ -1,48 +1,108 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios' 
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect, useContext } from 'react'
+import axios from 'axios'
+import {useNavigate} from 'react-router-dom'
+import {useAuth} from '@clerk/clerk-react'
+import { userAuthorContextObj } from '../../contexts/UserAuthorContext'
 
 function Articles() {
-  let [articles,setarticles]=useState([])
-  const [error,seterror]=useState('')
-  
-  console.log(articles)
+
+  const [articles, setArticles] = useState([])
+  const [error, setError] = useState('')
   const navigate=useNavigate()
+  const {getToken}=useAuth();
+  const {currentUser}=useContext(userAuthorContextObj)
+  //get all articles
   async function getArticles() {
-    let res =await axios.get('http://localhost:3000/author-api/articles')
-    if (res.data.message=='articles'){
-      setarticles(res.data.pavload)
-
-    }else{
-      seterror(res.data.message)
-    }
-  }
-
-  function gotoArticleById(articleObj){
-    navigate(`../${articleObj.articleId}`,{state:articleObj})
-  }
-  useEffect(()=>{
-    getArticles()
-  },[])
-  return (
-    <div className='container d-flex justify-content-between  p-3 rounded-3 gap-3'>
-      {
-        articles.map((articleObj)=>(
-          <div key={articleObj.articleId} className='bg-info p-3 rounded-3' style={{width:"250px"}}>
-            <div className="card-body">
-              <img src={articleObj.authorData.profileImageUrl} width="50px" alt="" className='rounded-circle' />
-            </div>
-            <div className="card-title">
-              {articleObj.title}
-            </div>
-            <div className="card-text">
-              {articleObj.content.substring(0,80)+"..."}
-            </div>
-            <div className="btn btn-primary" onClick={()=>gotoArticleById(articleObj)}>Read More</div>
-          </div>
-        ))
+    //get jwt token
+    const token=await getToken()
+    //make authenticated req
+    if (currentUser.role=='user'){
+      let response = await axios.get('http://localhost:3000/user-api/articles',{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+      if (response.data.message === 'articles') {
+        setArticles(response.data.payload)
+        setError('')
+      } else {
+        setError(response.data.message)
       }
+    }else if(currentUser.role=='author'){
+      let res = await axios.get('http://localhost:3000/author-api/articles',{
+        headers:{
+          Authorization:`Bearer ${token}`
+        }
+      })
+      if (res.data.message === 'articles') {
+        setArticles(res.data.payload)
+        setError('')
+      } else {
+        setError(res.data.message)
+      }
+    }
+    
+    
+  }
+  console.log(error)
 
+  //goto specific article
+  function gotoArticleById(articleObj){
+      navigate(`../${articleObj.articleId}`,{ state:articleObj})
+  }
+
+
+  useEffect(() => {
+    getArticles()
+  }, [])
+
+  console.log(articles)
+
+  return (
+    <div className='container'>
+      <div>
+      {error.length!==0&&<p className='display-4 text-center mt-5 text-danger'>{error}</p>}
+        <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 '>
+          {
+            articles.map((articleObj) => <div className='col' key={articleObj.articleId}>
+              <div className="card h-100">
+                <div className="card-body">
+                {/* author image  */}
+                  <div className="author-details text-end">
+                    <img src={articleObj.authorData.profileImageUrl}
+                      width='40px'
+                      className='rounded-circle'
+                      alt="" />
+                    {/* author name */}
+                    <p>
+                      <small className='text-secondary'>
+                        {articleObj.authorData.nameOfAuthor}
+                      </small>
+                    </p>
+                  </div>
+                  {/* article title */}
+                  <h5 className='card-title'>{articleObj.title}</h5>
+                  {/* article content upadto 80 chars */}
+                  <p className='card-text'>
+                    {articleObj.content.substring(0, 80) + "...."}
+                  </p>
+                  {/* read more button */}
+                  <button className='btn btn-primary' onClick={()=>gotoArticleById(articleObj)}>
+                    Read more
+                  </button>
+                </div>
+                <div className="card-footer">
+                {/* article's date of modification */}
+                  <small className="text-body-secondary">
+                    Last updated on {articleObj.dateOfModification}
+                  </small>
+                </div>
+              </div>
+            </div>
+            )
+          }
+        </div>
+      </div>
     </div>
   )
 }

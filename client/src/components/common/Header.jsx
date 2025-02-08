@@ -14,8 +14,8 @@ function Header() {
   }
   return (
     <div>
-      <nav className='header d-flex align-items-center justify-content-between bg-dark '>
-        <div className="d-flex justify-content-center">
+      <nav className='header pt-1 d-flex align-items-center justify-content-between bg-dark '>
+        <div>
           <Link to='/' className='link'>
             LOGO
           </Link>
@@ -35,11 +35,13 @@ function Header() {
             </li>
           </>:
             <div className=' d-flex justify-content-between gap-2 user-button'>
-              <div style={{position:'relative'}}>
-                <img src={user.imageUrl} width="40px" alt="" className='rounded-circle'/>
-                <p className='role text-light' style={{position:'absolute',fontSize:"14px",top:'-7px',right:"-25px"}}>{currentUser.role}</p>
+              <div>
+                <div style={{position:'relative'}} className='text-center'>
+                  <img src={user.imageUrl} width="40px" alt="" className='rounded-circle'/>
+                  <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",top:'-7px',right:"-5px"}}>{currentUser.role}</p>
+                </div>
+                <p className="ms-3 user-name text-light">{user.firstName}</p>
               </div>
-              <p className="ms-3 user-name">{user.firstName}</p>
               <button className="btn btn-danger signout-btn" onClick={handleSignout}>SignOut</button>
             </div>
           }

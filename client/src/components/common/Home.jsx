@@ -17,11 +17,11 @@ function Home() {
     let res=null;
     if(selectedRole=='author'){
       res=await axios.post('http://localhost:3000/author-api/author',currentUser)
-      let {message,pavload}=res.data
+      let {message,payload}=res.data
       if (message=='author'){
         setcurrentUser({
           ...currentUser,
-          ...pavload
+          ...payload
         })
         seterr("")
       }else{
@@ -30,11 +30,11 @@ function Home() {
     }
     if(selectedRole=='user'){
       res=await axios.post('http://localhost:3000/user-api/user',currentUser)
-      let {message,pavload}=res.data
+      let {message,payload}=res.data
       if (message=='user'){
         setcurrentUser({
           ...currentUser,
-          ...pavload
+          ...payload
         })
         seterr("")
       }else{
