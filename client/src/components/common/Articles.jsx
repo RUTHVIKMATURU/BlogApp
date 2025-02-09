@@ -11,6 +11,8 @@ function Articles() {
   const navigate=useNavigate()
   const {getToken}=useAuth();
   const {currentUser}=useContext(userAuthorContextObj)
+  const [categoryArticles,setCategoryArticles]=useState([])
+  const [category,setCategory]=useState('')
   //get all articles
   async function getArticles() {
     //get jwt token
@@ -44,27 +46,50 @@ function Articles() {
     
     
   }
-  console.log(error)
 
   //goto specific article
   function gotoArticleById(articleObj){
       navigate(`../${articleObj.articleId}`,{ state:articleObj})
   }
-
+  function handlecategoryselect(e){
+    let value =e.target.value;
+    setCategory(value)
+    let res=articles.filter((articleObj)=>articleObj.category === value)
+    setCategoryArticles(res)
+  }
 
   useEffect(() => {
     getArticles()
+    console.log(categoryArticles)
   }, [])
-
-  console.log(articles)
 
   return (
     <div className='container'>
-      <div>
+      <div className="dropdown-container">
+    <h1>Select the Category</h1>
+    <div className="custom-dropdown w-50">
+      <select
+        id="category"
+        className="form-control mb-3 custom-select"
+        onChange={handlecategoryselect}
+      >
+        <option value="" selected disabled>Select Category</option>
+        <option value="programming">Programming</option>
+        <option value="AI&ML">AIML</option>
+        <option value="database">Database</option>
+      </select>
+
+    </div>
+  </div>
+
+      
       {error.length!==0&&<p className='display-4 text-center mt-5 text-danger'>{error}</p>}
+        {
+          categoryArticles.length===0&&category.length!=0&&<h1>No articles with category {category}</h1>
+        }
         <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3 '>
           {
-            articles.map((articleObj) => <div className='col' key={articleObj.articleId}>
+            categoryArticles.map((articleObj) => <div className='col mb-2' key={articleObj.articleId}>
               <div className="card h-100">
                 <div className="card-body">
                 {/* author image  */}
@@ -102,7 +127,7 @@ function Articles() {
             )
           }
         </div>
-      </div>
+      
     </div>
   )
 }

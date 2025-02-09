@@ -23,6 +23,10 @@ const userAuthorSchema = new mongoose.Schema({
     isActive:{
       type:Boolean,
       default:true
+    },
+    isBlock:{
+      type:Boolean,
+      default:false
     }
   },{"strict":"throw"})
 const userAuthor=mongoose.model('userauthor',userAuthorSchema)

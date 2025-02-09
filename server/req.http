@@ -109,3 +109,19 @@ Content-Type: application/json
     "comments":[]
    
 }
+
+### create admin
+POST http://localhost:3000/admin-api/admin HTTP/1.1
+Content-Type: application/json
+
+{
+  "role": "admin",
+  "firstName": "admin1",
+  "lastName": "admin1",
+  "email": "admin1@mail.com",
+  "profileImageUrl": "admin1 image",
+  "isActive": true
+}
+
+### get all users and authors
+GET http://localhost:3000/admin-api/userauthor HTTP/1.1

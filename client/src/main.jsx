@@ -14,7 +14,7 @@ import Articles from './components/common/Articles.jsx'
 import PostArticle from './components/author/PostArticle.jsx'
 import AuthorProfile from './components/author/AuthorProfile.jsx'
 import UserAuthorContext from './contexts/UserAuthorContext.jsx'
-
+import AdminProfile from './components/admin/AdminProfile.jsx'
 
 const browserRouterObj=createBrowserRouter([
   {
@@ -72,6 +72,10 @@ const browserRouterObj=createBrowserRouter([
             element:<Navigate to='articles'/>
           }
         ]
+      },
+      {
+        path:'admin-profile/:email',
+        element:<AdminProfile/>
       }
     ]
   }

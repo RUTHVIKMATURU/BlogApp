@@ -76,7 +76,7 @@ function ArticleByID() {
     let res=await axios.put(`http://localhost:3000/user-api/comment/${state.articleId}`,commentObj)
     if(res.data.message==='comment added'){
       setCommentStatus(true)
-      navigate(`/author-profile/articles/${state.articleId}`, { state: res.data.payload })
+      navigate(`/user-profile/articles/${state.articleId}`, { state: res.data.payload })
     }
   }
 
