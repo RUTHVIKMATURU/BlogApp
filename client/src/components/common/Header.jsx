@@ -10,6 +10,7 @@ function Header() {
   async function handleSignout(){
     await signOut();
     setcurrentUser(null)
+    localStorage.setItem('currentuser',JSON.stringify(null))
     navigate('/')
   }
   return (
@@ -38,7 +39,7 @@ function Header() {
               <div>
                 <div style={{position:'relative'}} className='text-center'>
                   <img src={user.imageUrl} width="40px" alt="" className='rounded-circle'/>
-                  <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",top:'-7px',right:"-5px"}}>{currentUser.role}</p>
+                  <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",top:'-7px',right:"-5px"}}>{currentUser?.role}</p>
                 </div>
                 <p className="ms-3 user-name text-light">{user.firstName}</p>
               </div>

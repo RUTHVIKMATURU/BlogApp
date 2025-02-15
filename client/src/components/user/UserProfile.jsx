@@ -7,7 +7,7 @@ function UserProfile() {
     <div>
       <ul className='d-flex justify-content-center list-unstyled fs-3'>
           <li>
-            <NavLink to='articles' className="nav-link">Articles</NavLink>
+            <NavLink to='articles' className="nav-link btn px-2 bg-info">Articles</NavLink>
           </li>
       </ul>
       <div className='mt-5'>

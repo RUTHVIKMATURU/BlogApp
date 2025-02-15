@@ -65,6 +65,7 @@ function Home() {
           }
           setError('')
       }
+      localStorage.setItem('currentuser',JSON.stringify(currentUser))
     } catch (err) {
       setError(err.message);
     }
@@ -80,6 +81,7 @@ function Home() {
         email: user.emailAddresses[0].emailAddress,
         profileImageUrl: user.imageUrl,
       });
+      localStorage.setItem('currentuser',JSON.stringify(currentUser))
     }
   }, [isLoaded])
 

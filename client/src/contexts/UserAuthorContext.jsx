@@ -9,6 +9,9 @@ function UserAuthorContext({children}) {
     profileImageUrl:"",
     role:""
 })
+useEffect(()=>{
+  setcurrentUser(JSON.parse(localStorage.getItem('currentuser')))
+},[])
   return (
     <userAuthorContextObj.Provider value={{currentUser,setcurrentUser}}>
       {children}
