@@ -3,7 +3,7 @@ import { userAuthorContextObj } from '../../contexts/UserAuthorContext'
 import { useUser } from '@clerk/clerk-react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+import "./Home.css"
 function Home() {
   const { currentUser, setcurrentUser } = useContext(userAuthorContextObj)
 
@@ -123,7 +123,7 @@ function Home() {
             <p className="display-6">{user.firstName}</p>
             <p className="lead">{user.emailAddresses[0].emailAddress}</p>
           </div>
-          <p className="lead">Select role</p>
+          <p className="lead text-center">Select role</p>
           {error.length !== 0 && (
             <p
               className="text-danger fs-5"

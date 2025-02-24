@@ -47,7 +47,11 @@ function Articles() {
   }, []);
 
   useEffect(() => {
+    if(category=='ALL'){
+      setCategoryArticles(articles);
+    }else{
     setCategoryArticles(category ? articles.filter(a => a.category === category) : articles);
+    }
   }, [articles, category]);
 
   return (
@@ -55,7 +59,8 @@ function Articles() {
       <div className='dropdown-container'>
         <h1>Select the Category</h1>
         <select className='form-control mb-3' onChange={handleCategorySelect}>
-          <option value='' disabled>Select Category</option>
+          <option value='' selected disabled>Select Category</option>
+          <option value="ALL">All Articles</option>
           <option value='programming'>Programming</option>
           <option value='AI&ML'>AI & ML</option>
           <option value='database'>Database</option>

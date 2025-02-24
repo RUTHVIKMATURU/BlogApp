@@ -27,7 +27,6 @@ body {
 .header {
 
     margin-bottom: 50px;
-    /* background-image: linear-gradient(to bottom, #96c2db, #96c2db, #96c2db, #96c2db, #96c2db, #a0c5de, #aac9e1, #b3cce3, #c6d4e7, #d7dcea, #e5e6ed, #f0f0f0); */
     background-image: linear-gradient(to bottom, #aba5a5, #bcb7b8, #cccacb, #deddde, #f0f0f0);
 
 
@@ -117,22 +116,19 @@ body {
 
 }
 
-.signout-btn {
-    border: none;
+.signout{
     margin-left: 10px;
-    /* color: #FFEECC; */
-    color: rgb(217, 83, 0);
-    background-color: transparent;
-    height: 30px;
-    padding: 2px;
-    font-size: 1rem;
-    border-radius: 5px;
+    background-color:#002349 ;
+    height: 50px;
+    font-size: 2rem;
+    border-radius: 20px;
     font-weight: 400;
     font-family: "oswald", sans-serif;
-    border: 1px solid rgb(217, 83, 0);
 }
 
-
+.signout:hover{
+    background-color: #002349;
+}
 /* article read button */
 .custom-btn {
     box-shadow: inset 0px 1px 0px 0px #bbdaf7;

@@ -43,7 +43,7 @@ function Header() {
                 </div>
                 <p className="ms-3 user-name text-light">{user.firstName}</p>
               </div>
-              <button className="btn btn-danger signout-btn" onClick={handleSignout}>SignOut</button>
+              <button className="signout btn text-light fs-4" onClick={handleSignout} >SignOut</button>
             </div>
           }
         </ul>
