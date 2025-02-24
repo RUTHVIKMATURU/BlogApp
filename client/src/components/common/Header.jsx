@@ -15,10 +15,10 @@ function Header() {
   }
   return (
     <div>
-      <nav className='header pt-1 d-flex align-items-center justify-content-between bg-dark '>
+      <nav className='header  d-flex align-items-center justify-content-between bg-dark '>
         <div>
-          <Link to='/' className='link'>
-            LOGO
+          <Link to='/' className='link '>
+            <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572.png" alt=""  width="50px" className='ms-3 rounded-1'/>
           </Link>
         </div>
         <ul className='d-flex justify-content-around gap-5 list-unstyled header-links'>
@@ -38,10 +38,9 @@ function Header() {
             <div className=' d-flex justify-content-between gap-2 user-button'>
               <div>
                 <div style={{position:'relative'}} className='text-center'>
-                  <img src={user.imageUrl} width="40px" alt="" className='rounded-circle'/>
-                  <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",top:'-7px',right:"-5px"}}>{currentUser?.role}</p>
+                  <img src={user.imageUrl} width="35px" alt="" className='rounded-circle' style={{position:'absolute',left:"-40px",top:"14px"}}/>
+                  <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",right:"-25px"}}>{currentUser?.role}</p>
                 </div>
-                <p className="ms-3 user-name text-light">{user.firstName}</p>
               </div>
               <button className="signout btn text-light fs-4" onClick={handleSignout} >SignOut</button>
             </div>

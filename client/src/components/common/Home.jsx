@@ -3,7 +3,6 @@ import { userAuthorContextObj } from '../../contexts/UserAuthorContext'
 import { useUser } from '@clerk/clerk-react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import "./Home.css"
 function Home() {
   const { currentUser, setcurrentUser } = useContext(userAuthorContextObj)
 
@@ -11,14 +10,8 @@ function Home() {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // console.log("isSignedIn :", isSignedIn)
-   console.log("User :", user)
-  // console.log("isLolded :", isLoaded)
-
-
 
   async function onSelectRole(e) {
-    //clear error property
     setError('')
     const selectedRole = e.target.value;
     currentUser.role = selectedRole;
@@ -27,16 +20,16 @@ function Home() {
       if (selectedRole === 'author') {
         res = await axios.post('http://localhost:3000/author-api/author', currentUser)
         let { message, payload } = res.data;
-        // console.log(message, payload)
-        if(payload.isBlock===true){
+        if(payload.isBlock===false){
           if (message === 'author') {
             setcurrentUser({ ...currentUser, ...payload })
-            // setError(null)
+            
+            setError('')
           } else {
-            setError(message);
+            setError("INVALID ROLE");
           }
-          setError('')
         }else{
+          alert("Your account is blocked contact admin")
           setError("Your account is blocked contact admin")
         }
       }
@@ -44,14 +37,16 @@ function Home() {
       if (selectedRole === 'user') {
         res = await axios.post('http://localhost:3000/user-api/user', currentUser)
         let { message, payload } = res.data;
-        if(payload.isBlock===true){
+        if(payload.isBlock===false){
           if (message === 'user') {
             setcurrentUser({ ...currentUser, ...payload })
+            
+            setError('')
           } else {
-            setError(message);
+            setError("INVALID ROLE");
           }
-          setError('')
         }else{
+          alert("Your account is blocked contact admin")
           setError("Your account is blocked contact admin")
         }
       }
@@ -60,15 +55,17 @@ function Home() {
         let { message, payload } = res.data;
           if (message === 'admin') {
             setcurrentUser({ ...currentUser, ...payload })
+            
+            setError('')
           } else {
-            setError(message);
+            setError("INVALID ROLE");
           }
-          setError('')
       }
       localStorage.setItem('currentuser',JSON.stringify(currentUser))
     } catch (err) {
-      setError(err.message);
+      setError("INVALID ROLE");
     }
+    
   }
 
 
@@ -89,13 +86,13 @@ function Home() {
 
   useEffect(() => {
 
-    if (currentUser?.role === "user" && error.length === 0) {
+    if (currentUser?.role === "user" && currentUser?.isBlock=== false && error.length === 0) {
       navigate(`/user-profile/${currentUser.email}`);
     }
-    if (currentUser?.role === "author" && error.length === 0) {
+    if (currentUser?.role === "author" && currentUser?.isBlock=== false && error.length === 0) {
       navigate(`/author-profile/${currentUser.email}`);
     }
-    if (currentUser?.role === "admin" && error.length === 0) {
+    if (currentUser?.role === "admin" && currentUser?.isBlock=== false && error.length === 0) {
       navigate(`/admin-profile/${currentUser.email}`);
     }
 
@@ -107,10 +104,15 @@ function Home() {
   return (
     <div className='container'>
       {
-        isSignedIn === false && <div>
-          <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam neque consequatur nemo, enim expedita alias nobis iste obcaecati, eum dolor deserunt voluptatum odio aperiam, officiis sequi voluptates molestias atque sint?</p>
-          <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam neque consequatur nemo, enim expedita alias nobis iste obcaecati, eum dolor deserunt voluptatum odio aperiam, officiis sequi voluptates molestias atque sint?</p>
-          <p className="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Veniam neque consequatur nemo, enim expedita alias nobis iste obcaecati, eum dolor deserunt voluptatum odio aperiam, officiis sequi voluptates molestias atque sint?</p>
+        isSignedIn === false && <div className='d-flex justify-content-between'>
+          <img src="https://www.figma.com/community/resource/5ea432cf-35bb-4c43-9f73-fb61c008e831/thumbnail" alt="" width="500px" />
+          <div className=" p-2 home">
+            <p className='lead' style={{textAlign:'justify'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi reiciendis atque voluptate labore possimus rerum blanditiis aspernatur sit aut error, sed consequatur necessitatibus odio neque facere fugiat ullam dolorem quas perferendis deleniti ab tempore. Corporis, non, ullam, veniam sed dolorem impedit nihil repudiandae expedita molestiae mollitia placeat obcaecati pariatur libero.</p>
+            <div className='d-flex justify-content-center gap-5'>
+            <button className="btn btn-secondary px-4 py-2 rounded-5" onClick={()=>{navigate("/signin")}}>Get Started</button>
+            <button className="btn btn-warning px-4 py-2 rounded-5" onClick={()=>{navigate("/signin")}}>About</button>
+            </div>
+          </div>
 
         </div>
       }

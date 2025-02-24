@@ -27,9 +27,7 @@ body {
 .header {
 
     margin-bottom: 50px;
-    background-image: linear-gradient(to bottom, #aba5a5, #bcb7b8, #cccacb, #deddde, #f0f0f0);
-
-
+    background-image: linear-gradient(to right, #0072ff, #00c6ff, #4facfe, #00f2fe, #12d8fa);
 }
 
 .header-text-quote {

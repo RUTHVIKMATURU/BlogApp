@@ -39,8 +39,8 @@ function AdminProfile() {
                 <p className="lead">Role : <b>{userAuthorObj.role} </b></p>
                 {
                   userAuthorObj.isBlock === false?(
-                  <button className="btn btn-danger" onClick={()=>handleblock(userAuthorObj)}>Unblock</button>):
-                  (<button className="btn btn-success" onClick={()=>handleblock(userAuthorObj)}>Block</button>
+                  <button className="btn btn-danger" onClick={()=>handleblock(userAuthorObj)}>Block</button>):
+                  (<button className="btn btn-success" onClick={()=>handleblock(userAuthorObj)}>Unblock</button>
 
                   )}
               </div>
