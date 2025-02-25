@@ -104,9 +104,9 @@ function Home() {
   return (
     <div className='container'>
       {
-        isSignedIn === false && <div className='d-flex justify-content-between'>
-          <img src="https://www.figma.com/community/resource/5ea432cf-35bb-4c43-9f73-fb61c008e831/thumbnail" alt="" width="500px" />
-          <div className=" p-2 home">
+        isSignedIn === false && <div className='d-flex flex-wrap justify-content-between'>
+          <img src="https://www.figma.com/community/resource/5ea432cf-35bb-4c43-9f73-fb61c008e831/thumbnail" alt="" className='w-50'/>
+          <div className="w-50 p-2 home">
             <p className='lead' style={{textAlign:'justify'}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi reiciendis atque voluptate labore possimus rerum blanditiis aspernatur sit aut error, sed consequatur necessitatibus odio neque facere fugiat ullam dolorem quas perferendis deleniti ab tempore. Corporis, non, ullam, veniam sed dolorem impedit nihil repudiandae expedita molestiae mollitia placeat obcaecati pariatur libero.</p>
             <div className='d-flex justify-content-center gap-5'>
             <button className="btn btn-secondary px-4 py-2 rounded-5" onClick={()=>{navigate("/signin")}}>Get Started</button>

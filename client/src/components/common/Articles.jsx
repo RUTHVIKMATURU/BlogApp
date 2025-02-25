@@ -5,7 +5,7 @@ import { useAuth } from '@clerk/clerk-react';
 import { userAuthorContextObj } from '../../contexts/UserAuthorContext';
 
 function Articles() {
-  const [articles, setArticles] = useState(JSON.parse(localStorage.getItem('articles')) || []);
+  const [articles, setArticles] = useState([]);
   const [error, setError] = useState('');
   const navigate = useNavigate();
   const { getToken } = useAuth();
@@ -43,8 +43,8 @@ function Articles() {
   }
 
   useEffect(() => {
-    if (!articles.length) getArticles();
-  }, []);
+    getArticles();
+  }, [articles]);
 
   useEffect(() => {
     if(category=='ALL'){

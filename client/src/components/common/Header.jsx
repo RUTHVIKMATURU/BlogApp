@@ -15,34 +15,34 @@ function Header() {
   }
   return (
     <div>
-      <nav className='header  d-flex align-items-center justify-content-between bg-dark '>
+      <nav className='header d-flex align-items-center justify-content-between '>
         <div>
           <Link to='/' className='link '>
             <img src="https://cdn.logojoy.com/wp-content/uploads/2018/05/30164225/572.png" alt=""  width="50px" className='ms-3 rounded-1'/>
           </Link>
         </div>
-        <ul className='d-flex justify-content-around gap-5 list-unstyled header-links'>
+        <ul className='d-flex align-items-center justify-content-around gap-5 list-unstyled header-links'>
           {
             !isSignedIn ?
             <>
             <li>
-            <Link to='' className='link'>Home</Link>
+            <Link to='' className='link button'>Home</Link>
             </li>
             <li>
-              <Link to='signin' className='link'>Signin</Link>
+              <Link to='signin' className='link button'>Signin</Link>
             </li>
             <li>
-              <Link to='signup' className='link'>Signup</Link>
+              <Link to='signup' className='link button'>Signup</Link>
             </li>
           </>:
             <div className=' d-flex justify-content-between gap-2 user-button'>
               <div>
-                <div style={{position:'relative'}} className='text-center'>
+                <div style={{position:'relative',cursor:'pointer'}} className='text-center'>
                   <img src={user.imageUrl} width="35px" alt="" className='rounded-circle' style={{position:'absolute',left:"-40px",top:"14px"}}/>
                   <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",right:"-25px"}}>{currentUser?.role}</p>
                 </div>
               </div>
-              <button className="signout btn text-light fs-4" onClick={handleSignout} >SignOut</button>
+              <button className="button fs-4" onClick={handleSignout} >SignOut</button>
             </div>
           }
         </ul>

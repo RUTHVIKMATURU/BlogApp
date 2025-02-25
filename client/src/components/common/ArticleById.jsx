@@ -60,6 +60,7 @@ function ArticleByID() {
     let res=await axios.put(`http://localhost:3000/author-api/articles/${state.articleId}`,state)
     if(res.data.message==='article deleted or restored'){
       setCurrentArticle(res.data.payload)
+      console.log(res.data.payload)
   }
   }
   //restore article
@@ -68,6 +69,7 @@ function ArticleByID() {
     let res=await axios.put(`http://localhost:3000/author-api/articles/${state.articleId}`,state)
     if(res.data.message==='article deleted or restored'){
         setCurrentArticle(res.data.payload)
+        console.log(res.data.payload)
     }
   }
   async function addComment(commentObj) {

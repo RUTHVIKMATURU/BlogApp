@@ -27,7 +27,7 @@ body {
 .header {
 
     margin-bottom: 50px;
-    background-image: linear-gradient(to right, #0072ff, #00c6ff, #4facfe, #00f2fe, #12d8fa);
+    background-color: var(--royal-blue);
 }
 
 .header-text-quote {
@@ -114,18 +114,22 @@ body {
 
 }
 
-.signout{
-    margin-left: 10px;
-    background-color:#002349 ;
-    height: 50px;
-    font-size: 2rem;
-    border-radius: 20px;
+.button{
+    margin: 6px 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color:var(--royal-blue);
+    color: var(--white-smoke);
+    font-size: 1.5rem;
     font-weight: 400;
     font-family: "oswald", sans-serif;
+    border: none;
 }
 
-.signout:hover{
-    background-color: #002349;
+.button:hover{
+    background-color: var(--white-smoke);
+    color: var(--royal-blue);
+    transition: 0.3s;
 }
 /* article read button */
 .custom-btn {
