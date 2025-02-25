@@ -42,7 +42,7 @@ function Header() {
                   <p className='role text-light  bg-warning px-1 rounded-5' style={{position:'absolute',fontSize:"14px",right:"-25px"}}>{currentUser?.role}</p>
                 </div>
               </div>
-              <button className="signout fs-4" onClick={handleSignout} >SignOut</button>
+              <button className="signout btn text-light fs-4" onClick={handleSignout} >SignOut</button>
             </div>
           }
         </ul>
