@@ -165,7 +165,10 @@ body {
 .card {
     box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
-
+.article:hover{
+    background-color: #002349;
+    
+}
 .article-content {
     text-indent: 100px;
     /* background-color: #d2d3d4; */

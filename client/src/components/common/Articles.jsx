@@ -41,11 +41,21 @@ function Articles() {
   function handleCategorySelect(e) {
     setCategory(e.target.value);
   }
-
   useEffect(() => {
+    const storedArticles = localStorage.getItem("articles");
+    if (storedArticles) {
+      setError("");
+      setArticles(JSON.parse(storedArticles));
+    }
+  
+    const storedUser = JSON.parse(localStorage.getItem("currentuser"));
+    if (storedUser && !currentUser?.role) {
+      currentUser.role = storedUser.role; 
+    }
+  
     getArticles();
-  }, [articles]);
-
+  }, []);
+  
   useEffect(() => {
     if(category=='ALL'){
       setCategoryArticles(articles);
@@ -58,13 +68,13 @@ function Articles() {
     <div className='container'>
       <div className='dropdown-container'>
         <h1>Select the Category</h1>
-        <select className='form-control mb-3' onChange={handleCategorySelect}>
-          <option value='' selected disabled>Select Category</option>
+        <select className='form-control mb-3' onChange={handleCategorySelect} defaultValue='ALL'>
           <option value="ALL">All Articles</option>
           <option value='programming'>Programming</option>
           <option value='AI&ML'>AI & ML</option>
           <option value='database'>Database</option>
         </select>
+
       </div>
       {error && <p className='text-danger text-center'>{error}</p>}
       <div className='row row-cols-1 row-cols-sm-2 row-cols-md-3'>

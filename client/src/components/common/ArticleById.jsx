@@ -32,9 +32,8 @@ function ArticleByID() {
     const articleAfterChanges = { ...state, ...modifiedArticle }
     const token = await getToken()
     const currentDate = new Date();
-    //add date of modification
+    currentDate.setMonth(currentDate.getMonth()+1)
     articleAfterChanges.dateOfModification = currentDate.getDate() + "-" + currentDate.getMonth() + "-" + currentDate.getFullYear()
-
     //make http post req
     let res = await axios.put(`http://localhost:3000/author-api/article/${articleAfterChanges.articleId}`,
       articleAfterChanges,
