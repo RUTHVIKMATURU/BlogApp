@@ -19,3 +19,5 @@ adminApp.put('/userauthor',expressAsyncHandler(async (req, res) => {
   res.status(200).send({ message: "user updated", payload: newuser })
 }))
 module.exports=adminApp;
+
+const number=10;
